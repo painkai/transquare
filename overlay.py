@@ -46,6 +46,7 @@ class OverlayWindow(QWidget):
         self._capture.frame_ready.connect(self._on_frame)
         self._capture.blocks_ready.connect(self._on_blocks)
         self.bottom_area.toggle_capture.connect(self._on_toggle)
+        self.bottom_area.retranslate.connect(self._on_retranslate)
         self._capture.start()
 
     def _capture_region(self):
@@ -69,6 +70,9 @@ class OverlayWindow(QWidget):
             self._capture.resume()
         else:
             self._capture.pause()
+
+    def _on_retranslate(self):
+        self._capture._last_text = None  # 캐시 리셋 → 다음 캡처 시 강제 재번역
 
     def closeEvent(self, event):
         self._capture.stop()
@@ -230,6 +234,7 @@ class TranslationArea(QWidget):
     """하단 반투명 영역 — 번역 결과 + 언어 선택"""
 
     toggle_capture = pyqtSignal(bool)  # True = resume, False = pause
+    retranslate = pyqtSignal()
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -324,6 +329,21 @@ class TranslationArea(QWidget):
         """)
         self.play_btn.clicked.connect(self._toggle)
 
+        retry_btn = QToolButton()
+        retry_btn.setText("↺")
+        retry_btn.setFixedSize(22, 22)
+        retry_btn.setToolTip("다시 번역")
+        retry_btn.setStyleSheet("""
+            QToolButton {
+                background: transparent;
+                color: rgba(180,180,255,160);
+                border: none;
+                font-size: 14px;
+            }
+            QToolButton:hover { color: rgba(200,200,255,255); }
+        """)
+        retry_btn.clicked.connect(self.retranslate)
+
         self.lang_btn = QToolButton()
         self.lang_btn.setText("⚙")
         self.lang_btn.setFixedSize(22, 22)
@@ -339,10 +359,11 @@ class TranslationArea(QWidget):
         """)
         self.lang_btn.clicked.connect(self._toggle_lang_panel)
 
-        for btn in (self.play_btn, self.lang_btn):
+        for btn in (self.play_btn, retry_btn, self.lang_btn):
             btn.setCursor(Qt.CursorShape.PointingHandCursor)
 
         btn_col.addWidget(self.play_btn)
+        btn_col.addWidget(retry_btn)
         btn_col.addWidget(self.lang_btn)
         btn_col.addStretch()
 

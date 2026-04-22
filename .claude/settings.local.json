@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(conda create *)",
+      "PowerShell(conda create -n transquare python=3.12 -y 2>&1)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\painkai\", \"C:\\\\ProgramData\", \"C:\\\\\" -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -match \"conda|anaconda\" } | Select-Object FullName)",
+      "PowerShell(Get-ChildItem \"C:\\\\\", \"D:\\\\\" -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -match \"conda|anaconda|mamba\" } | Select-Object FullName)",
+      "PowerShell(conda run -n transquare python -c \"import PyQt6; import dxcam; import winsdk; print\\('OK'\\)\" 2>&1)",
+      "PowerShell(& \"C:\\\\ProgramData\\\\miniconda3\\\\condabin\\\\conda.bat\" run -n transquare python -c \"import PyQt6; import dxcam; import winsdk; print\\('ALL OK'\\)\" 2>&1)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git config *)",
+      "Bash(git push *)"
+    ]
+  }
+}
