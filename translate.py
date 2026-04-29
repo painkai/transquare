@@ -1,8 +1,31 @@
+import json
+import os
 import re
+import sys
+
 import requests
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL = "qwen3.5:9b"
+_DEFAULTS = {
+    "ollama_url": "http://localhost:11434/api/generate",
+    "model": "qwen3.5:9b",
+}
+
+
+def _load_config() -> dict:
+    base = os.path.dirname(sys.executable) if getattr(sys, "frozen", False) else os.path.dirname(os.path.abspath(__file__))
+    path = os.path.join(base, "config.json")
+    if not os.path.exists(path):
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(_DEFAULTS, f, indent=2)
+        return dict(_DEFAULTS)
+    with open(path, encoding="utf-8") as f:
+        cfg = json.load(f)
+    return {**_DEFAULTS, **cfg}
+
+
+_cfg = _load_config()
+OLLAMA_URL: str = _cfg["ollama_url"]
+MODEL: str = _cfg["model"]
 
 
 def translate(text: str, src_lang: str, tgt_lang: str) -> str:
