@@ -12,7 +12,20 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(git config *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git tag -a v1.0.0 -m 'v1.0.0 — 초기 릴리즈 *)",
+      "Bash(git tag *)",
+      "Bash(conda run *)",
+      "PowerShell(conda run -n transquare pip show pyinstaller dxcam 2>&1)",
+      "PowerShell(& \"$env:USERPROFILE\\\\miniconda3\\\\Scripts\\\\conda.exe\" run -n transquare pip show pyinstaller dxcam 2>&1; if \\(-not $?\\) { & \"$env:USERPROFILE\\\\anaconda3\\\\Scripts\\\\conda.exe\" run -n transquare pip show pyinstaller dxcam 2>&1 })",
+      "PowerShell(& \"$env:USERPROFILE\\\\anaconda3\\\\Scripts\\\\conda.exe\" run -n transquare pip install pyinstaller 2>&1)",
+      "PowerShell(Set-Location \"D:\\\\myowndev\\\\transquare\"; & \"$env:USERPROFILE\\\\anaconda3\\\\Scripts\\\\conda.exe\" run -n transquare pyinstaller --onedir --noconsole --name transquare overlay.py 2>&1)",
+      "PowerShell(Get-ChildItem \"D:\\\\myowndev\\\\transquare\\\\dist\\\\transquare\" | Select-Object Name, @{N='Size\\(MB\\)';E={[math]::Round\\($_.Length/1MB,1\\)}} | Sort-Object Name)",
+      "PowerShell(Get-ChildItem \"D:\\\\myowndev\\\\transquare\\\\dist\\\\transquare\" -Recurse | Measure-Object -Property Length -Sum | Select-Object @{N='Total\\(MB\\)';E={[math]::Round\\($_.Sum/1MB,1\\)}}, Count; Get-ChildItem \"D:\\\\myowndev\\\\transquare\\\\dist\\\\transquare\" | Select-Object Name)",
+      "Bash(./transquare.exe)",
+      "Bash(tasklist)",
+      "PowerShell(Set-Location \"D:\\\\myowndev\\\\transquare\"; & \"$env:USERPROFILE\\\\anaconda3\\\\Scripts\\\\conda.exe\" run -n transquare pyinstaller --onedir --noconsole --name transquare overlay.py 2>&1 | Select-String -Pattern \"\\(INFO: Build complete|ERROR|WARNING: Hidden\\)\")",
+      "PowerShell(Set-Location \"D:\\\\myowndev\\\\transquare\"; & \"$env:USERPROFILE\\\\anaconda3\\\\Scripts\\\\conda.exe\" run -n transquare pyinstaller -y --onedir --noconsole --name transquare overlay.py 2>&1 | Select-String -Pattern \"\\(INFO: Build complete|ERROR|WARNING: Hidden\\)\")"
     ]
   }
 }
