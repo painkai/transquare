@@ -10,17 +10,17 @@ from winsdk.windows.graphics.imaging import BitmapDecoder, BitmapPixelFormat, Bi
 from winsdk.windows.storage.streams import InMemoryRandomAccessStream, DataWriter
 
 LANG_TAG = {
-    "English": "en",
-    "Japanese": "ja",
-    "Chinese (Simplified)": "zh-Hans",
-    "Chinese (Traditional)": "zh-Hant",
-    "Korean": "ko",
-    "French": "fr",
-    "German": "de",
-    "Spanish": "es",
-    "Russian": "ru",
-    "Thai": "th",
-    "Vietnamese": "vi",
+    "English": "en-US",
+    "Japanese": "ja-JP",
+    "Chinese (Simplified)": "zh-Hans-CN",
+    "Chinese (Traditional)": "zh-Hant-TW",
+    "Korean": "ko-KR",
+    "French": "fr-FR",
+    "German": "de-DE",
+    "Spanish": "es-ES",
+    "Russian": "ru-RU",
+    "Thai": "th-TH",
+    "Vietnamese": "vi-VN",
 }
 
 

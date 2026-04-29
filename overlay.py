@@ -463,8 +463,8 @@ class TranslationArea(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    font = app.font()
-    font.setPointSize(10)
+    font = QFont()
+    font.setPointSizeF(10.0)
     app.setFont(font)
     signal.signal(signal.SIGINT, lambda *_: app.quit())
     win = OverlayWindow()
